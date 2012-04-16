@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <title>iPlantGeo</title>
+    <style>
+	A.sub {color:blue; font-size:medium; font-family:cursive; text-indent:0.5in}
+    </style>
+</head>
+
+
+<body>
+<H1 align=center bgcolor=forestgreen>iPlantGeo</H1>
+<P>
+This is a prototype demonstration (milestone 0) of the provision of web services for
+accessing advanced data including environmental GIS layers, phylogenies, traits and gene frequencies
+using locations (latitude/longitude) and species binomials (Genus species).
+<P>
+<h3>Instructions</h3>Start with either lat/lon or species binomials. In the matching box paste the requested
+information or specify a CSV (comma separated) file containing that information. NO HEADER ROW on the CSV input file. Then click the OK button.
+<br><br>
+<table border=5 cellpadding=15>
+<tr>
+<td>
+    <h2>From Latitude/Longitude</h3>
+	<FORM ACTION="iplantgeo_cgi-ncm.py" METHOD="POST" ENCTYPE="multipart/form-data">
+		Latitude&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Longitude
+		<p>
+		<textarea NAME="lat" COLS="15" ROWS="10"></textarea>
+		<textarea NAME="lon" COLS="15" ROWS="10"></textarea>
+		<P align=center>OR</h3><br>Select local CSV file with NO HEADER ROWS<br>
+		<input type="file" name="latlons" size="25">
+		<INPUT TYPE="hidden" NAME="from" VALUE="latlon">
+		<p>
+		<h2>Get</h2>
+		<input type="radio" name="get" value="env" checked="true">Environmental data (CSV)</input><br>
+		<input type="radio" name="get" value="species">Species present (CSV)</input><br>
+		<input type="radio" name="get" value="field">User specified variable (CSV)</input>
+		<p>
+		<input type="radio" name="map" value="yes">Show results on a map</input>
+		<p>
+		<INPUT TYPE="submit" VALUE="Fetch it" NAME="OK">
+	</FORM>
+<td width=20>
+<td>
+	<h2>From species binomials</h3>
+	<FORM ACTION="iplantgeo_cgi.py" METHOD="POST" ENCTYPE="multipart/form-data">
+		Species binomial (Genus species)
+		<p>
+		<textarea NAME="spec" COLS="30" ROWS="10"></textarea>
+		<P>
+		<P align=center>OR</h3><br>Select local CSV file with NO HEADER ROWS<br>
+		<input type="file" name="specs" size="25">
+		<INPUT TYPE="hidden" NAME="from" VALUE="species">
+		<p>
+		<h2>Get</h2>
+		<input type="radio" name="get" value="range" checked="true">Species ranges (.SHP or CSV??)</input><br>
+		<input type="radio" name="get" value="phyl">Phylogeny (Newick)</input><br>
+		<input type="radio" name="get" value="valid">Validated species binomials (CSV)</input><br>
+		<input type="radio" name="get" value="trait">Traits (CSV)</input>
+		<p>
+		<INPUT TYPE="submit" VALUE="Fetch it" NAME="OK" align=center>
+	</FORM>
+</td>
+</body>
+</html>
